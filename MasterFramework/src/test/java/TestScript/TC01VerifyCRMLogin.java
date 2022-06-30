@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import CommonUtility.CommonMethods;
 import CommonUtility.SetUp;
-import Pages.LoginPage;
+import ObjectRepository.LoginPage;
 
 
 public class TC01VerifyCRMLogin extends SetUp

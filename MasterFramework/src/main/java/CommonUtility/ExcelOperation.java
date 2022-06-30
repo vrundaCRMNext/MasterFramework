@@ -2,38 +2,22 @@ package CommonUtility;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.sl.usermodel.Sheet;
-import org.apache.poi.ss.formula.functions.Columns;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.RichTextString;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-public class ExcelOperation implements AutoConst
+
+public class ExcelOperation
 {
 	public static XSSFWorkbook wb;
 	public static XSSFSheet sheet;
@@ -47,7 +31,8 @@ public class ExcelOperation implements AutoConst
 	public static Logger log = LoggerFactory.getLogger(ExcelOperation.class);
 
 	static HashMap<String, Integer> excelColumns = new HashMap<String, Integer>();
-
+	static String ExcelPATH = System.getProperty("user.dir")+"\\TestData\\AutomationTestData.xlsx";
+	
 	public static int getRowCount(String sheet) throws IOException
 	{
 		File f = new File(ExcelPATH);
@@ -120,7 +105,7 @@ public class ExcelOperation implements AutoConst
 	}	
 
 	//To read excel data using column header
-	public static String getCellData(String SheetName ,String columnName, int rowNum) throws EncryptedDocumentException, IOException 
+	public static String getCellData(String sheetName ,String columnName, int rowNum) throws EncryptedDocumentException, IOException 
 	{
 		File f = new File(ExcelPATH);
 
@@ -130,7 +115,7 @@ public class ExcelOperation implements AutoConst
 		//creating workbook instance that refers to .xls file
 		 wb=new XSSFWorkbook(inputStream); 
 
-		 sheet = wb.getSheet(SheetName);
+		 sheet = wb.getSheet(sheetName);
 		//XSSFSheet sh = wb.getSheetAt(0);    //0 - index of 1st sheet
 
 		//adding all the column header names to the map 'columns'
@@ -138,7 +123,7 @@ public class ExcelOperation implements AutoConst
 			excelColumns.put(cell.getStringCellValue(), cell.getColumnIndex());
 		});
 
-		return readData(SheetName, rowNum, excelColumns.get(columnName));
+		return readData(sheetName, rowNum, excelColumns.get(columnName));
 	}
 
 
@@ -202,8 +187,7 @@ public class ExcelOperation implements AutoConst
 		//creating workbook instance that refers to .xls file
 		 wb=new XSSFWorkbook(inputStream); 
 
-		 sheet = wb.getSheet(SheetName);
-		//XSSFSheet sh = wb.getSheetAt(0);    //0 - index of 1st sheet
+		 sheet = wb.getSheet(sheetName);
 
 		//adding all the column header names to the map 'columns'
 		sheet.getRow(0).forEach(cell ->{

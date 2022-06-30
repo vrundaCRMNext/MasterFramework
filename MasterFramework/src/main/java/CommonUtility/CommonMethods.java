@@ -1,11 +1,15 @@
 package CommonUtility;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
+import org.apache.commons.lang.UnhandledException;
 import org.apache.poi.EncryptedDocumentException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -24,6 +28,7 @@ public class CommonMethods extends SetUp
 	public static Actions a ;
 	public static Logger log = LoggerFactory.getLogger(CommonMethods.class);
 	
+
 	public static void Click(WebElement element) 
 	{
 		try 
@@ -265,18 +270,19 @@ public class CommonMethods extends SetUp
 
 	}
 
-public static boolean isTestRunnable(String testName) throws IOException
+public static boolean isTestRunnable(String testName) throws Exception
 {
-		int rows =ExcelOperation.getRowCount("TestScenario");
+	String scenarioSheetName= CommonMethods.readPropertyFile("SheetName");	
+	int rows =ExcelOperation.getRowCount(scenarioSheetName);
 		//System.out.println("No of rows : "+rows + " and test name = "+testName);
 	
 		for(int rNum=1; rNum<=rows; rNum++){
 			
-			String testCase = ExcelOperation.getCellData("TestScenario", "TC Name", rNum);
+			String testCase = ExcelOperation.getCellData(scenarioSheetName, "TC Name", rNum);
 			
 			if(testCase.equalsIgnoreCase(testName)){
 				
-				String runmode = ExcelOperation.getCellData("TestScenario", "RunMode", rNum);
+				String runmode = ExcelOperation.getCellData(scenarioSheetName, "RunMode", rNum);
 				
 				if(runmode.equalsIgnoreCase("Yes"))
 					return true;
@@ -289,11 +295,14 @@ public static boolean isTestRunnable(String testName) throws IOException
 
 	public static int getTestScenarioRowNum(String testScenario) throws Exception
 	{
-		int rows =ExcelOperation.getRowCount(SheetName);
+		
+		String scenarioSheetName= CommonMethods.readPropertyFile("SheetName");
+		
+		int rows =ExcelOperation.getRowCount(scenarioSheetName);
 		int rNum=1;
 		for( ;rNum<=rows; rNum++)
 		{
-			String testCase = ExcelOperation.getCellData(SheetName, "TC Name", rNum);
+			String testCase = ExcelOperation.getCellData(scenarioSheetName, "TC Name", rNum);
 			if(testCase.equalsIgnoreCase(testScenario))
 			{	
 				log.info("Row num for TestScenario = "+testScenario+ " is = "+rNum);
@@ -304,5 +313,18 @@ public static boolean isTestRunnable(String testName) throws IOException
 		
 	}
 
+	public static String readPropertyFile(String propertyName)throws UnhandledException, IOException
+	{
+		
+		Properties prop=new Properties();
+		String currentDir =System.getProperty("user.dir");
+		FileInputStream fis =new FileInputStream(currentDir+"\\src\\main\\resources\\Config.properties");
+
+		prop.load(fis);
+		String propertyValue=prop.getProperty(propertyName);
+		
+		return propertyValue;
+	}
+	
 
 }

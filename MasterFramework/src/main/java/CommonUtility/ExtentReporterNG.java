@@ -1,6 +1,8 @@
 package CommonUtility;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,10 +10,11 @@ import org.slf4j.LoggerFactory;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-public class ExtentReporterNG extends SetUp implements AutoConst {
+public class ExtentReporterNG extends SetUp {
 	public static File flOutput;
 	static ExtentReports extent ;
 	static Logger log = LoggerFactory.getLogger(ExtentReporterNG.class);
+	static String folderDate = new SimpleDateFormat("dd-MM-yyyy HH").format(new Date());
 
 	public static ExtentReports getReportObject()
 	{

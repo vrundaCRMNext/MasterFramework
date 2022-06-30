@@ -22,6 +22,7 @@ public class TestListeners extends SetUp implements ITestListener
 	public static ExtentTest test;
 	public static ExtentReports extent=ExtentReporterNG.getReportObject();
 	public static ThreadLocal<ExtentTest> extentTest =new ThreadLocal<ExtentTest>();
+	//static String SheetName = CommonMethods.readPropertyFile("SheetName");
 	
 	public void onTestStart(ITestResult result) 
 	{
@@ -32,7 +33,8 @@ public class TestListeners extends SetUp implements ITestListener
 		log.info("Test Case_" + methodName+ "_Successfully Started");
 	}
 
-	public void onTestSuccess(ITestResult result) {
+	public void onTestSuccess(ITestResult result)
+	{
 		
     	String methodName = result.getMethod().getMethodName();
 		String logText = "<b>" + "Test Case:- " + methodName+ " PASSED" + "</b>";
@@ -42,8 +44,9 @@ public class TestListeners extends SetUp implements ITestListener
 		log.info("Test Case_" + methodName + "_Successfully Passed");
 		try {
 			//ScreenShot.takeSnapShot(methodName, "Pass");
+			String sheetName = CommonMethods.readPropertyFile("SheetName");
 			int rowNum = CommonMethods.getTestScenarioRowNum(methodName);
-			ExcelOperation.setCellData(SheetName, "Status", rowNum, "Pass");
+			ExcelOperation.setCellData(sheetName, "Status", rowNum, "Pass");
 		} catch (Exception e) {}
 		
 	}
@@ -97,9 +100,9 @@ public class TestListeners extends SetUp implements ITestListener
 		extentTest.get().log(Status.FAIL, m);
 		
 		try {
-			//ScreenShot.takeSnapShot(methodName, "Pass");
+			String sheetName = CommonMethods.readPropertyFile("SheetName");
 			int rowNum = CommonMethods.getTestScenarioRowNum(methodName);
-			ExcelOperation.setCellData(SheetName, "Status", rowNum, "Fail");
+			ExcelOperation.setCellData(sheetName, "Status", rowNum, "Fail");
 		} catch (Exception e) {}
 
 	}

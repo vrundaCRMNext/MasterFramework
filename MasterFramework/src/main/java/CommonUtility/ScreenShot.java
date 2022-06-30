@@ -2,6 +2,9 @@ package CommonUtility;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -13,11 +16,13 @@ import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
-public class ScreenShot extends SetUp implements AutoConst
+public class ScreenShot extends SetUp 
 {
 	static Logger log = LoggerFactory.getLogger(ScreenShot.class);
 	static String FileDateTime = null;
 	static File FilePath = null;
+	public static String folderDate = new SimpleDateFormat("dd-MM-yyyy HH").format(new Date());
+
 	
 	//Variables for Screenshots location 
 		public static String currentDir;

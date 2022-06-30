@@ -67,3 +67,19 @@ Session ID: f51d217097648a5aa15a0bc4402f6243
 2022-06-30 12:23:37 INFO  SetUp - Test Case_VerifyCRMLogin_Successfully Passed
 2022-06-30 12:23:37 INFO  CommonMethods - Row num for TestScenario = VerifyCRMLogin is = 1
 2022-06-30 12:23:38 INFO  ExcelOperation - Write to excel with : Row=1 | Cell =3 | Data =Pass
+2022-06-30 15:53:38 INFO  Utils - [TestNG] Running:
+  C:\Users\Vrunda Vibhute\git\MasterFramework\MasterFramework\testng.xml
+
+2022-06-30 15:53:38 INFO  SetUp - Test Case_VerifyCRMLogin_Successfully Started
+2022-06-30 15:53:39 INFO  SetUp - Browser = Chrome
+2022-06-30 15:53:45 INFO  WebDriverManager - Using chromedriver 102.0.5005.61 (resolved driver for Chrome 102)
+2022-06-30 15:53:45 INFO  WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Vrunda Vibhute\.cache\selenium\chromedriver\win32\102.0.5005.61\chromedriver.exe
+2022-06-30 15:53:47 INFO  SetUp - Chrome Browser Launched..
+2022-06-30 15:53:50 INFO  SetUp - URL : https://kmb.crmnext.com/sng7/app/login/login
+2022-06-30 15:53:51 INFO  ScreenShot - ScreenShot captured LoginPage || Status :Pass
+2022-06-30 15:53:57 INFO  CommonMethods - Data Sucessfully entered on User Name = admin
+2022-06-30 15:53:59 INFO  CommonMethods - Data Sucessfully entered on Password = acid_qa
+2022-06-30 15:54:06 INFO  LoginPage - Sucessfully logout..
+2022-06-30 15:54:06 INFO  SetUp - Test Case_VerifyCRMLogin_Successfully Passed
+2022-06-30 15:54:06 INFO  CommonMethods - Row num for TestScenario = VerifyCRMLogin is = 1
+2022-06-30 15:54:08 INFO  ExcelOperation - Write to excel with : Row=1 | Cell =3 | Data =Pass
