@@ -1,0 +1,9 @@
+To utilize Master Framework for Automation read following.
+
+1.Identify Test Scenarios for automation.
+2.Design page object model under -> src/main/java/ObjectRepository.
+3.Write down Test Script ubder -> src/test/java/TestScript with same Class Name as given in TestData excel Scenario Sheet.
+4.Prepare TestData excel.
+5.Add testscipts classes into testng.xml.
+6.Logs get written under Logs folder.
+7.Test Execution result under Results folder with respective folder Timestamp.
