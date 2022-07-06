@@ -1,4 +1,13 @@
 To utilize Master Framework for Automation read following.
+IMP : dont copy/paste code from here.
+
+How to Add MasterFramework to your eclipse workspace.
+1.Click on Code button(Green Color), Download Zip file.
+2.Extract to your eclipse workspace.
+3.Open eclipse -> File -> Import -> Maven ->Existing maven projects -> search respective MasterFramework.
+4.Ready to use.
+
+
 
 1.Identify Test Scenarios for automation.
 2.Design page object model under -> src/main/java/ObjectRepository.
